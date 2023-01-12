@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LounchRoom.LoginPage">
+    
+    <StackLayout BackgroundColor="White">
+        <Image Source="Resources/LogoFullDark_1.png" WidthRequest="325" Aspect="AspectFit" Margin="0,100,0,25" />
+        <Entry x:Name="loginEnter" Placeholder="Логин" FontFamily="Manrope Regular" TextColor="#2D2D2D" Margin="50,0,50,25" Text="{Binding LoginEntryText}"/>
+        <Button Text="Войти" 
+                Clicked="loginButtonClicked" 
+                BackgroundColor="#DB394B" 
+                Margin="50,0" 
+                CornerRadius="50" 
+                TextColor="White"  
+                FontFamily="Manrope Regular" 
+                Command="{Binding LoginButton}"/>
+    </StackLayout>
+
+</ContentPage>

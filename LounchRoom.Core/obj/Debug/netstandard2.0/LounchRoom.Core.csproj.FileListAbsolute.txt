@@ -1,0 +1,9 @@
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\bin\Debug\netstandard2.0\LounchRoom.Core.deps.json
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\bin\Debug\netstandard2.0\LounchRoom.Core.dll
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\bin\Debug\netstandard2.0\LounchRoom.Core.pdb
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\obj\Debug\netstandard2.0\LounchRoom.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\obj\Debug\netstandard2.0\LounchRoom.Core.AssemblyInfoInputs.cache
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\obj\Debug\netstandard2.0\LounchRoom.Core.AssemblyInfo.cs
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\obj\Debug\netstandard2.0\LounchRoom.Core.csproj.CoreCompileInputs.cache
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\obj\Debug\netstandard2.0\LounchRoom.Core.dll
+C:\Users\Zius\source\repos\LounchRoom\LounchRoom.Core\obj\Debug\netstandard2.0\LounchRoom.Core.pdb

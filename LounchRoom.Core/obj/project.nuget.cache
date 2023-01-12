@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "/mhjWddL62N1Vwj+58dXjO485sLzuIBk+lX0DGCv6KI98L88mkS/UVsC6hyK+G/GDIJhnd273gwXDAw5jrxfng==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Zius\\source\\repos\\LounchRoom\\LounchRoom.Core\\LounchRoom.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Zius\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Zius\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
