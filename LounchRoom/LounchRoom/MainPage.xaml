@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:mainpage="clr-namespace:LounchRoom.Core.VeiwModels.MainPage;assembly=LounchRoom.Core" x:DataType="mainpage:MainPageVM"
+             x:Class="LounchRoom.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="logout.png"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout BackgroundColor="White">
+                <Label Text="Заказы на сегодня" 
+                       TextColor="#2D2D2D" 
+                       FontFamily="Manrope-Bold" 
+                       FontSize="24" 
+                       HorizontalTextAlignment="Center"/>
+                <ListView ItemsSource="{Binding Items}"
+                      HasUnevenRows="True" 
+                      SeparatorVisibility="None" 
+                      ItemTapped="ListView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="20" Margin="15" CornerRadius="10" HasShadow="True">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Prise}" FontSize="20" TextColor="#2D2D2D" FontFamily="Manrope-Bold"/>
+                                        <Label Text="{Binding Order}" FontSize="16" TextColor="#2D2D2D" FontFamily="Manrope-Regular"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Button AbsoluteLayout.LayoutBounds="0.5,0.95,257,40" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    CornerRadius="50"
+                    BackgroundColor="#DB394B" 
+                    Text="Сделать заказ"
+                    TextColor="White"
+                    FontFamily="Manrope-Regular"
+                    Command="{Binding MakeAnOrderButton}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -973,7 +973,7 @@
       },
       "LounchRoom/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "LounchRoom.Core": "1.0.0",
           "Xamarin.Essentials": "1.6.1",
@@ -988,7 +988,7 @@
       },
       "LounchRoom.Core/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v2.1",
         "compile": {
           "bin/placeholder/LounchRoom.Core.dll": {}
         },

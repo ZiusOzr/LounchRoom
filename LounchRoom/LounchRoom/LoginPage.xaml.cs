@@ -1,4 +1,5 @@
 ﻿using LounchRoom.Core.VeiwModels;
+using LounchRoom.Core.VeiwModels.LoginPage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,19 +10,19 @@ using Xamarin.Forms;
 
 namespace LounchRoom
 {
-    public partial class LoginPage : ContentPage
+    public partial class LoginPage : ContentPage, ILoginPage
     {
         public LoginPage()
         {
             InitializeComponent();
-
             
-            this.BindingContext = new LoginPageVM();
+            this.BindingContext = new LoginPageVM(this);
         }
 
-        private void loginButtonClicked(object sebder, EventArgs e)
+        public void ShowNextPage()
         {
-            this.Navigation.PushAsync(new AuthPage());
+            this.Navigation.PushAsync(new MainPage());
         }
+
     }
 }

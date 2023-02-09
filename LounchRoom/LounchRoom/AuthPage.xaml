@@ -4,9 +4,14 @@
              x:Class="LounchRoom.AuthPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Подтверждение почты" TextColor="#DB394B" FontFamily="Manrope-Bold" FontSize="24" Margin="0,150,0,0" HorizontalOptions="Center"/>
+            <Label Text="На Ваш E-mail было отправлено письмо. Проверьте, пожалуйста, почту." 
+                   TextColor="#2D2D2D" 
+                   FontFamily="Manrope-Regular" 
+                   FontSize="20" 
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

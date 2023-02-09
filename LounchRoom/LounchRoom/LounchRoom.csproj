@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
@@ -9,6 +9,20 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Manrope-Bold.ttf" />
+    <None Remove="Resources\Fonts\Manrope-Light.ttf" />
+    <None Remove="Resources\Fonts\Manrope-Medium.ttf" />
+    <None Remove="Resources\Fonts\Manrope-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Manrope-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Manrope-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Manrope-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Manrope-Regular.ttf" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
@@ -27,6 +41,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="AuthPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

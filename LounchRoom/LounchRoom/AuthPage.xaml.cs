@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -15,6 +16,10 @@ namespace LounchRoom
         public AuthPage()
         {
             InitializeComponent();
+
+
+     
         }
+
     }
 }
