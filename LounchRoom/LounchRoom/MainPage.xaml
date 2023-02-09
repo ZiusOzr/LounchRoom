@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:mainpage="clr-namespace:LounchRoom.Core.VeiwModels.MainPage;assembly=LounchRoom.Core" x:DataType="mainpage:MainPageVM"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LounchRoom.MainPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="logout.png"/>
@@ -19,14 +19,12 @@
                       ItemTapped="ListView_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Frame Padding="20" Margin="15" CornerRadius="10" HasShadow="True">
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding Prise}" FontSize="20" TextColor="#2D2D2D" FontFamily="Manrope-Bold"/>
-                                        <Label Text="{Binding Order}" FontSize="16" TextColor="#2D2D2D" FontFamily="Manrope-Regular"/>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell>
+                            <Frame Padding="20" Margin="15" CornerRadius="10" HasShadow="True">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Price}" FontSize="20" TextColor="#2D2D2D" FontFamily="Manrope-Bold"/>
+                                    <Label Text="{Binding Order}" FontSize="16" TextColor="#2D2D2D" FontFamily="Manrope-Regular"/>
+                                </StackLayout>
+                            </Frame>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

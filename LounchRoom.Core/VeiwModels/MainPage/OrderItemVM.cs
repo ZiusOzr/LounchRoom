@@ -6,8 +6,7 @@ namespace LounchRoom.Core.VeiwModels.MainPage
 {
     public class OrderItemVM
     {
-        public string Prise { get; set; }
+        public string Price { get; set; }
         public string Order { get; set; }
-
     }
 }

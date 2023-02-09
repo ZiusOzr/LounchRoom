@@ -9,18 +9,22 @@ namespace LounchRoom.Core.VeiwModels.MainPage
 {
     public class MainPageVM : INotifyPropertyChanged
     {
-        private ObservableCollection<OrderItemVM> items;
+        private ObservableCollection<OrderItemVM> _items = new ObservableCollection<OrderItemVM>();
+
         public ObservableCollection<OrderItemVM> Items
         {
-            get
-            {
-                return items;
-            }
+            get => _items;
             set
             {
-                items = value;
+                if (_items != value)
+                {
+                    _items = value;
+                    PropertyChanged?.Invoke(Items, new PropertyChangedEventArgs(nameof(Items)));
+                }
             }
         }
+
+        public ICommand MakeAnOrderButton { get; set; }
 
         public MainPageVM()
         {
@@ -30,22 +34,22 @@ namespace LounchRoom.Core.VeiwModels.MainPage
             {
                 new OrderItemVM
                 {
-                    Prise = "346 руб.",
+                    Price = "346 руб.",
                     Order = "Первый заказ. Тут блюда всякие"
                 },
                 new OrderItemVM
                 {
-                    Prise = "651 руб.",
+                    Price = "651 руб.",
                     Order = "Второй заказ. Тут блюда всякие"
                 },
                 new OrderItemVM
                 {
-                    Prise = "54 руб.",
+                    Price = "54 руб.",
                     Order = "Третий заказ. Тут блюда всякие"
                 }
             };
 
-
+            MakeAnOrderButton = new Command(OnOrder);
         }
 
 
@@ -54,10 +58,12 @@ namespace LounchRoom.Core.VeiwModels.MainPage
             //TODO: Загрузка заказов
         }
 
+        private void OnOrder()
+        {
+            //TODO 
+            Console.WriteLine("OnOrder");
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-
-
     }
 }
