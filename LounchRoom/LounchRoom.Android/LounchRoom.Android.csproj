@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -89,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LounchRoom\LounchRoom.csproj">
-      <Project>{3501646B-BDE9-467E-88E7-FE9B26E2896C}</Project>
+      <Project>{C235EAFA-D243-4E44-8B4A-C70120BB98C3}</Project>
       <Name>LounchRoom</Name>
     </ProjectReference>
   </ItemGroup>
