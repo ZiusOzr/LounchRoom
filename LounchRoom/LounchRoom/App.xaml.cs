@@ -24,10 +24,17 @@ namespace LounchRoom
         private void RegisterServices(bool enableFakes)
         {
             if (enableFakes)
+            {
                 Service<ILoginService>.Register(new FakeLoginService());
-            else Service<ILoginService>.Register(new LoginService());
-
-
+                Service<IOrdersService>.Register(new FakeOrdersService());
+                Service<IMenuService>.Register(new FakeMenuService());
+            }
+            else 
+            {
+                Service<ILoginService>.Register(new LoginService());
+                Service<IOrdersService>.Register(new OrdersService());
+                Service<IMenuService>.Register(new MenuService());
+            }
         }
 
         protected override void OnStart()

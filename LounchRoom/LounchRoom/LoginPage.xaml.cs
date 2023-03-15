@@ -15,7 +15,7 @@ namespace LounchRoom
         public LoginPage()
         {
             InitializeComponent();
-            
+
             this.BindingContext = new LoginPageVM(this);
         }
 

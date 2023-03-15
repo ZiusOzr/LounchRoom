@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LounchRoom.iOS", "LounchRoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LounchRoom", "LounchRoom\LounchRoom\LounchRoom.csproj", "{C235EAFA-D243-4E44-8B4A-C70120BB98C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LounchRoom.Core", "LounchRoom.Core\LounchRoom.Core.csproj", "{BC902605-0872-497E-87FB-833636B86EAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LounchRoom.Core", "LounchRoom.Core\LounchRoom.Core.csproj", "{BC902605-0872-497E-87FB-833636B86EAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,7 +40,6 @@ Global
 		{B511143D-8EBD-4520-81BA-664207F408FD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{B511143D-8EBD-4520-81BA-664207F408FD}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 		{09CAED28-E238-43F3-829F-6C63BE48B342}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{09CAED28-E238-43F3-829F-6C63BE48B342}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{09CAED28-E238-43F3-829F-6C63BE48B342}.Debug|Any CPU.Deploy.0 = Debug|iPhone
 		{09CAED28-E238-43F3-829F-6C63BE48B342}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{09CAED28-E238-43F3-829F-6C63BE48B342}.Debug|iPhone.Build.0 = Debug|iPhone

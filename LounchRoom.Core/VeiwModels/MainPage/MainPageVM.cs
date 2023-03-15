@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LounchRoom.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,61 +10,69 @@ namespace LounchRoom.Core.VeiwModels.MainPage
 {
     public class MainPageVM : INotifyPropertyChanged
     {
-        private ObservableCollection<OrderItemVM> _items = new ObservableCollection<OrderItemVM>();
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private ObservableCollection<OrderItemVM> items;
         public ObservableCollection<OrderItemVM> Items
         {
-            get => _items;
+            get
+            {
+                return items;
+            }
             set
             {
-                if (_items != value)
+                if (items != value)
                 {
-                    _items = value;
-                    PropertyChanged?.Invoke(Items, new PropertyChangedEventArgs(nameof(Items)));
+                    items = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Items)));
                 }
             }
         }
 
-        public ICommand MakeAnOrderButton { get; set; }
+        public ICommand GoToTheMenuButton { get; set; }
 
-        public MainPageVM()
+        private IMainPage _mainPage;
+        public MainPageVM(IMainPage mainPage)
         {
+            _mainPage = mainPage;
+            Items = new ObservableCollection<OrderItemVM>();
+            GoToTheMenuButton = new Command(OnOrder);
             LoadOrders();
+        }
 
-            Items = new ObservableCollection<OrderItemVM>()
+
+        private async void LoadOrders()
+        {
+            try
             {
-                new OrderItemVM
+                var orders = await Context.OrdersService.LoadOrders();
+                foreach (var item in orders)
                 {
-                    Price = "346 руб.",
-                    Order = "Первый заказ. Тут блюда всякие"
-                },
-                new OrderItemVM
-                {
-                    Price = "651 руб.",
-                    Order = "Второй заказ. Тут блюда всякие"
-                },
-                new OrderItemVM
-                {
-                    Price = "54 руб.",
-                    Order = "Третий заказ. Тут блюда всякие"
+                    Items.Add(new OrderItemVM 
+                    {
+                        Price = item.Price,
+                        Order = item.Order
+                    });
                 }
-            };
-
-            MakeAnOrderButton = new Command(OnOrder);
+            }
+            catch
+            {
+                Exception ex;
+            }
         }
 
-
-        private void LoadOrders()
+        private async void OnOrder()
         {
-            //TODO: Загрузка заказов
+            try
+            {
+                _mainPage.ShowNextPage();
+            }
+            catch
+            {
+                Exception ex;
+            }
         }
 
-        private void OnOrder()
-        {
-            //TODO 
-            Console.WriteLine("OnOrder");
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+       
     }
 }

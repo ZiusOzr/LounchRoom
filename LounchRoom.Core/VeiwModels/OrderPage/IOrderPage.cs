@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LounchRoom.Core.VeiwModels.MainPage
+namespace LounchRoom.Core.VeiwModels.OrderPage
 {
-    public interface IMainPage
+    public interface IOrderPage
     {
         public void ShowNextPage();
     }

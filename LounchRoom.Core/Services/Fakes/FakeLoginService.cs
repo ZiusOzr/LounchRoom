@@ -14,7 +14,7 @@ namespace LounchRoom.Core.Services.Fakes
             userDTO = new UserDTO
             {
                 Id = 1,
-                Login = "123",
+                Login = "zxc",
                 Name = "Name",
                 LastName = "LastName"
             };
@@ -22,7 +22,7 @@ namespace LounchRoom.Core.Services.Fakes
 
         async Task<UserDTO> ILoginService.Login(string login)
         {
-            return (login == "123") ? userDTO : throw new Exception("Почта не подтверждена. *переход на экран подтверждения*");
+            return (login == "zxc") ? userDTO : throw new Exception("Почта не подтверждена. *переход на экран подтверждения*");
         }
     }
 }

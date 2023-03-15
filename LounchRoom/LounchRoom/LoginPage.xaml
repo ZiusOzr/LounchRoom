@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:veiwmodels="clr-namespace:LounchRoom.Core.VeiwModels;assembly=LounchRoom.Core" x:DataType="veiwmodels:LoginPageVM"
              x:Class="LounchRoom.LoginPage">
-    
+
     <StackLayout BackgroundColor="White">
         <Image Source="LogoFullDark_1.png" WidthRequest="325" Aspect="AspectFit" Margin="0,100,0,25" />
         <Entry x:Name="loginEntry" 
