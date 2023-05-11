@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LounchRoom.SigninPage">
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#426126">
+            <Frame CornerRadius="15" BackgroundColor="#4D000000" Margin="30, 100" Padding="10">
+                <StackLayout>
+                    <Frame x:Name="loginFrame" Style="{StaticResource frameStatesStyle}">
+                        <Entry x:Name="loginEntry"
+                           Placeholder="Логин"
+                           Style="{StaticResource entryStatesStyle}"
+                           Text="{Binding LoginEntryText}"/>
+                    </Frame>
+                    <Frame x:Name="passFrame" Style="{StaticResource frameStatesStyle}">
+                        <Entry x:Name="passEntry"
+                           Placeholder="Пароль"
+                           Style="{StaticResource entryStatesStyle}"
+                           Text="{Binding PassEntryText}"
+                               IsPassword="True"/>
+                    </Frame>
+                    <Frame x:Name="confirmationPassFrame" Style="{StaticResource frameStatesStyle}">
+                        <Entry x:Name="confirmationPassEntry"
+                           Placeholder="Подтвердите пароль"
+                           Style="{StaticResource entryStatesStyle}"
+                           Text="{Binding СonfirmationPassEntryText}"
+                               IsPassword="True"/>
+                    </Frame>
+                    <Button x:Name="registerButton"
+                        Text="Зарегистрироваться"
+                            Style="{StaticResource buttonStatesStyle}"
+                            Command="{Binding RegisterButton}"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

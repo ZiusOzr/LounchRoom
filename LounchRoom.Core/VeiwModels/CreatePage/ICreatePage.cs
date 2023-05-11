@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LounchRoom.Core.VeiwModels.LoginPage
+namespace LounchRoom.Core.VeiwModels.CreatePage
 {
-    public interface ILoginPage
+    public interface ICreatePage
     {
         public void ShowNextPage(string arg);
+        public void ShowPreviousPage();
     }
 }

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace LounchRoom.Core.Services
 {
-    public interface ILoginService
+    public interface ISigninService
     {
-        public Task<HttpStatusCode> Login(string login, string password);
-
+        public Task<HttpStatusCode> Signin(string login, string password);
     }
 }

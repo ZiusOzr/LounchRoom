@@ -1,24 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:veiwmodels="clr-namespace:LounchRoom.Core.VeiwModels;assembly=LounchRoom.Core" x:DataType="veiwmodels:LoginPageVM"
-             x:Class="LounchRoom.LoginPage">
+             x:Class="LounchRoom.LoginPage"
+             NavigationPage.HasNavigationBar="false">
 
-    <StackLayout BackgroundColor="White">
-        <Image Source="LogoFullDark_1.png" WidthRequest="325" Aspect="AspectFit" Margin="0,100,0,25" />
-        <Entry x:Name="loginEntry" 
-               Placeholder="Логин" 
-               PlaceholderColor="#B1B1B1" 
-               FontFamily="Manrope-Regular" 
-               TextColor="#2D2D2D" 
-               Margin="50,0,50,25" 
-               Text="{Binding LoginEntryText}"/>
-        <Button Text="Войти" 
-                BackgroundColor="#DB394B" 
-                Margin="50,0" 
-                CornerRadius="50" 
-                TextColor="White"  
-                FontFamily="Manrope-Regular" 
-                Command="{Binding LoginButton}"/>
+    <StackLayout BackgroundColor="#426126">
+        <Frame CornerRadius="15" BackgroundColor="#4D000000" Margin="30, 150" Padding="10">
+            <StackLayout>
+                <Frame x:Name="loginFrame" Style="{StaticResource frameStatesStyle}">
+                    <Entry x:Name="loginEntry"
+                           Style="{StaticResource entryStatesStyle}"
+                           Placeholder="Логин"
+                           Text="{Binding LoginEntryText}"/>
+                </Frame>
+                <Frame x:Name="passFrame" Style="{StaticResource frameStatesStyle}">
+                    <Entry x:Name="passEntry"
+                           Style="{StaticResource entryStatesStyle}"
+                           Placeholder="Пароль"
+                           Text="{Binding PassEntryText}"
+                           IsPassword="True"/>
+                </Frame>
+                <Button x:Name="loginButton"
+                    Text="Войти"
+                        Style="{StaticResource buttonStatesStyle}"
+                        Command="{Binding LoginButton}"/>
+                <Button x:Name="registerButton"
+                        Text="Регистрация"
+                        Style="{StaticResource buttonStatesStyle}"
+                        Command="{Binding RegisterButton}"/>
+            </StackLayout>
+        </Frame>
+        
+        
     </StackLayout>
 
 </ContentPage>

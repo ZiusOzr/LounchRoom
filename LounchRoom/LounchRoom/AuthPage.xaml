@@ -3,15 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LounchRoom.AuthPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <Label Text="Подтверждение почты" TextColor="#DB394B" FontFamily="Manrope-Bold" FontSize="24" Margin="0,150,0,0" HorizontalOptions="Center"/>
-            <Label Text="На Ваш E-mail было отправлено письмо. Проверьте, пожалуйста, почту." 
-                   TextColor="#2D2D2D" 
-                   FontFamily="Manrope-Regular" 
-                   FontSize="20" 
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center"/>
-            
+        <StackLayout BackgroundColor="#426126">
+            <Frame CornerRadius="15" BackgroundColor="#4D000000" Margin="30, 100" Padding="10">
+                <StackLayout>
+                    <Label Text="Подтверждение почты" TextColor="#FFFFFF" FontFamily="Manrope-Bold" FontSize="16" Margin="0,150,0,0" HorizontalOptions="Center"/>
+                    <Label Text="На Ваш E-mail было отправлено письмо. Проверьте, пожалуйста, почту." 
+                       TextColor="#FFFFFF" 
+                       FontFamily="Manrope-Regular" 
+                       FontSize="14" 
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+                    <Button Text="Ок"
+                            Style="{StaticResource greenButton}"
+                            Command="{Binding СonfirmationButton}"/>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

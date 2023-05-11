@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using LounchRoom.Core.Services;
 using LounchRoom.Core.VeiwModels.LoginPage;
+using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace LounchRoom.Core.VeiwModels
 {
@@ -25,7 +27,21 @@ namespace LounchRoom.Core.VeiwModels
             } 
         }
 
+        private string passEntryText;
+        public string PassEntryText
+        {
+            get
+            {
+                return passEntryText;
+            }
+            set
+            {
+                passEntryText = value;
+            }
+        }
+
         public ICommand LoginButton { get; set; }
+        public ICommand RegisterButton { get; set; }
 
 
         private ILoginPage _loginPage;
@@ -33,24 +49,46 @@ namespace LounchRoom.Core.VeiwModels
         {
             _loginPage = loginPage;
             LoginButton = new Command(LoginButtonExecute);
+            RegisterButton = new Command(RegisterButtonExecute);
 
+        }
+
+        private bool passIsInvalid;
+        public bool PassIsInvalid
+        {
+            get { return passIsInvalid; }
+            set
+            {
+                if (passIsInvalid == value)
+                    return;
+
+                passIsInvalid = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PassIsInvalid)));
+            }
         }
 
         private async void LoginButtonExecute()
         {
-            var login = LoginEntryText;
+          ////  var login = loginEntryText;
+           // var password = passEntryText;
+            var login = "string";
+            var password = "string";
+            var code = await Context.LoginService.Login(login, password);
+            
+            if (code == System.Net.HttpStatusCode.OK)
+            {
+                _loginPage.ShowNextPage("login");
+            }
+            else
+            {
+                PassIsInvalid = true; //Затычка
+                //Требуется понятный вывод ошибок
+            }
+        }
 
-            try 
-            {
-                //TODO: работа с лоадинг идентификатором
-                var user = await Context.LoginService.Login(login);
-                _loginPage.ShowNextPage();
-            }
-            catch
-            {
-                Exception exception;
-                //TODO: Подтверждение почты
-            }
+        private void RegisterButtonExecute()
+        {
+            _loginPage.ShowNextPage("signin");
         }
     }
 }

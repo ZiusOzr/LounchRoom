@@ -16,13 +16,50 @@ namespace LounchRoom
         {
             InitializeComponent();
 
-            this.BindingContext = new LoginPageVM(this);
+            SetState();
+            var pageVM = new LoginPageVM(this);
+            this.BindingContext = pageVM;
+
+            pageVM.PropertyChanged += PageVM_PropertyChanged;
         }
 
-        public void ShowNextPage()
+        private void PageVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            this.Navigation.PushAsync(new MainPage());
+            var pageVM = BindingContext as LoginPageVM;
+            if (e.PropertyName == nameof(pageVM.PassIsInvalid))
+            {
+                VisualStateManager.GoToState(loginEntry, pageVM.PassIsInvalid ? "Invalid" : "Normal");
+                VisualStateManager.GoToState(passEntry, pageVM.PassIsInvalid ? "Invalid" : "Normal");
+                VisualStateManager.GoToState(loginFrame, pageVM.PassIsInvalid ? "Invalid" : "Normal");
+                VisualStateManager.GoToState(passFrame, pageVM.PassIsInvalid ? "Invalid" : "Normal");
+
+            }
         }
 
+        private void SetState()
+        {
+            VisualStateManager.GoToState(loginEntry, "Normal");
+            VisualStateManager.GoToState(passEntry, "Normal");
+            VisualStateManager.GoToState(loginFrame, "Normal");
+            VisualStateManager.GoToState(passFrame, "Normal");
+            VisualStateManager.GoToState(loginButton, "GreenButton");
+            VisualStateManager.GoToState(registerButton, "LightGreenButton");
+        }
+
+        public void ShowNextPage(string arg)
+        {
+            switch (arg)
+            {
+                case "login": 
+                    this.Navigation.PushAsync(new ProfilePage());
+                    break;
+                case "signin": 
+                    this.Navigation.PushAsync(new SigninPage());
+                    break;
+                case "auth":
+                    this.Navigation.PushAsync(new AuthPage());
+                    break;
+            }
+        }
     }
 }

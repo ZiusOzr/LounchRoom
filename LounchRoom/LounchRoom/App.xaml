@@ -3,6 +3,164 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LounchRoom.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="header">
+                <Setter Property="TextColor" Value="#3B4E2C"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="Manrope-Medium"/>
+            </Style>
+            <Style TargetType="Label" x:Key="caption">
+                <Setter Property="TextColor" Value="#3B4E2C"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="Manrope-Regular"/>
+                <Setter Property="Margin" Value="20, 0"/>
+            </Style>
+            <Style TargetType="Label" x:Key="body">
+                <Setter Property="TextColor" Value="#3B4E2C"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="Manrope-Regular"/>
+                <Setter Property="Margin" Value="20, 0"/>
+            </Style>
 
+            <Style TargetType="Image" x:Key="imageExpandStatesStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="ImageExpanderStates">
+                            <VisualState x:Name="ExpandMore">
+                                <VisualState.Setters>
+                                    <Setter Property="Source" Value="expend_more-48px.xml" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="ExpandLess">
+                                <VisualState.Setters>
+                                    <Setter Property="Source" Value="expend_less-48px.xml" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Label" x:Key="labelStatesStyle">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="20, 0"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="EntryStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#838383" />
+                                    <Setter Property="FontFamily" Value="Manrope-Regular"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Active">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#A1C30D" />
+                                    <Setter Property="FontFamily" Value="Manrope-Bold"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Entry" x:Key="entryStatesStyle">
+                <Setter Property="TextColor" Value="#2D2D2D" />
+                <Setter Property="FontFamily" Value="Manrope-Regular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="EntryStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="PlaceholderColor" Value="#D0D0D0" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Invalid">
+                                <VisualState.Setters>
+                                    <Setter Property="PlaceholderColor" Value="#B3B3B3" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="IsReadOnly" Value="True" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="frameStatesStyle">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="Margin" Value="0, 10" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="FrameStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                    <Setter Property="BorderColor" Value="#A1C30D" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Invalid">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#FFDCDC" />
+                                    <Setter Property="BorderColor" Value="#FF0012" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#00FF" />
+                                    <Setter Property="BorderColor" Value="#00FF" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="ListState">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E7EECA" />
+                                    <Setter Property="BorderColor" Value="#A1C30D" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="buttonStatesStyle">
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="FontFamily" Value="Manrope-Regular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0, 10" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="FrameStates">
+                            <VisualState x:Name="GreenButton">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#A1C30D" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="LightGreenButton">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E7EECA" />
+                                    <Setter Property="TextColor" Value="#3B4E2C" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
