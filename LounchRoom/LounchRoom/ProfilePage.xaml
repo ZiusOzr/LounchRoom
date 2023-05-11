@@ -77,7 +77,8 @@
                                 <ViewCell>
                                     <Label x:Name="groupItemLabel"
                                        Text="{Binding GroupName}"
-                                       Style="{StaticResource caption}"/>
+                                       Style="{StaticResource caption}"
+                                       TextColor = "{Binding TextColor}"/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

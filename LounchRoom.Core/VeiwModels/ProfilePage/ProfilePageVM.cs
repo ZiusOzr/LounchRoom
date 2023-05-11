@@ -134,13 +134,13 @@ namespace LounchRoom.Core.VeiwModels.ProfilePage
             PropertyChanged += SelectedGroupItem_PropertyChanged;
         }
 
-      
-
         private async void SelectedGroupItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SelectedGroupItem))
             {
                 await SecureStorage.SetAsync("activeGroupToken", SelectedGroupItem?.GroupId ?? "");
+                SelectedGroupItem.TextColor = "Red";
+                SelectedGroupItem.OnPropertyChanged();
             }
         }
 
