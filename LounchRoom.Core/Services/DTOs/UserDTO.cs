@@ -15,6 +15,7 @@ namespace LounchRoom.Core.Services.DTOs
         public bool NameFill { get; set; }
         public string Phone { get; set; }
         public List<string> Groups { get; set; }
+        public List<string> Kitchens { get; set; }
     }
 }
 

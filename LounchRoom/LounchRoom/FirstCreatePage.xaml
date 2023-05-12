@@ -6,23 +6,47 @@
         <StackLayout>
             <Label Text="Создание группы"
                    Style="{StaticResource Key=header}"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+                   Margin="20"/>
             <Frame x:Name="nameFrame" Style="{StaticResource frameStatesStyle}" Margin="20, 0">
                 <Entry x:Name="nameEntry"
                        Style="{StaticResource entryStatesStyle}"
                        Placeholder="Название группы"
                        Text="{Binding NameEntryText}"/>
             </Frame>
-            <Frame x:Name="addressFrame" Style="{StaticResource frameStatesStyle}" Margin="20, 0">
-                <Entry x:Name="addressEntry"
-                       Style="{StaticResource entryStatesStyle}"
-                       Placeholder="Адресс организации"
-                       Text="{Binding AddressEntryText}"/>
-            </Frame>
 
+            <Label Text="Адрес:"
+                       Style="{StaticResource Key=header}"
+                       Margin="20, 20, 0, 0"/>
+            <Frame x:Name="streetFrame" Style="{StaticResource frameStatesStyle}" Margin="20, 0">
+                <Entry x:Name="streetEntry"
+                       Style="{StaticResource entryStatesStyle}"
+                       Placeholder="Улица организации"
+                       Text="{Binding StreetEntryText}"/>
+            </Frame>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Frame x:Name="numberFrame" Style="{StaticResource frameStatesStyle}" Margin="20, 0" Grid.Column="0">
+                    <Entry x:Name="numberEntry"
+                           Style="{StaticResource entryStatesStyle}"
+                           Placeholder="Номер, корпус"
+                           Text="{Binding NumberEntryText}"/>
+                </Frame>
+                <Frame x:Name="officeFrame" Style="{StaticResource frameStatesStyle}" Margin="20, 0" Grid.Column="1">
+                    <Entry x:Name="officeEntry"
+                           Style="{StaticResource entryStatesStyle}"
+                           Placeholder="Квартира/офис"
+                           Text="{Binding OfficeEntryText}"/>
+                </Frame>
+            </Grid>
+            
             <Label Style="{StaticResource Key=header}"
                    Text="Способ оплаты:"
-                   Margin="20, 0"/>
+                   Margin="20, 20, 0, 0"/>
             <Frame x:Name="payLinkFrame" Style="{StaticResource frameStatesStyle}" Margin="20, 0">
                 <Entry x:Name="payLinkEntry"
                        Style="{StaticResource entryStatesStyle}"
@@ -35,19 +59,25 @@
                        Placeholder="Описание (необязательно)"
                        Text="{Binding DescriptionEntryText}"/>
             </Frame>
+            <Grid VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
                 <Button x:Name="previousePage"
+                        Grid.Column="0"
                         Style="{StaticResource buttonStatesStyle}"
                         Text="Назад"
                         BorderWidth="200"
                         Command="{Binding PreviousePageButton}"/>
                 <Button x:Name="nextPage"
+                        Grid.Column="1"
                         Style="{StaticResource buttonStatesStyle}"
                         Text="Далее"
                         BorderWidth="200"
                         Command="{Binding NextPageButton}"/>
-            </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

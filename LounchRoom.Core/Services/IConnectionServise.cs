@@ -9,7 +9,7 @@ namespace LounchRoom.Core.Services
 {
     public interface IConnectionService
     {
-        public Task<Result> GetRequest(string url, string tokenName);
+        public Task<Result> GetRequest(string url);
         public Task<Result> PostRequest(string url, string json);
     }
 }

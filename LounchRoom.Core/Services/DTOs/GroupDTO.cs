@@ -13,7 +13,7 @@ namespace LounchRoom.Core.Services.DTOs
         public GroupReferral Referral { get; set; }
         public GroupKitchenSettingsDTO Settings { get; set; }
         public PaymentInfoDTO PaymentInfo { get; set; }
-        public Guid SelectedKitchenId { get; set; }
+        public string SelectedKitchenId { get; set; }
     }
 
     public class GroupReferral

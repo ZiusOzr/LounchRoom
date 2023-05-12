@@ -1,4 +1,5 @@
 ﻿using LounchRoom.Core.Services;
+using LounchRoom.Core.Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +20,25 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
             set { nameEntryText = value; }
         }
 
-        private string addressEntryText;
-        public string AddressEntryText
+        private string streetEntryText;
+        public string StreetEntryText
         {
-            get { return addressEntryText; }
-            set { addressEntryText = value; }
+            get { return streetEntryText; }
+            set { streetEntryText = value; }
+        }
+
+        private string numberEntryText;
+        public string NumberEntryText
+        {
+            get { return numberEntryText; }
+            set { numberEntryText = value; }
+        }
+
+        private string officeEntryText;
+        public string OfficeEntryText
+        {
+            get { return officeEntryText; }
+            set { officeEntryText = value; }
         }
 
         private string payLinkEntryText;
@@ -73,9 +88,25 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
 
         private async void NextPageButtonExecute()
         {
-            var name = NameEntryText;
-            var address = AddressEntryText;
-            var payLink = PayLinkEntryText;
+            //var name = NameEntryText;
+            var name = "Группа";
+            //var street = StreetEntryText;
+            //var number = NumberEntryText;
+            //var office = OfficeEntryText;
+            var street = "Комсомольская";
+            var number = "4б";
+            var office = "17";
+            var address = new GroupConfigByAddressDTO
+            {
+                Address = new AddressDTO
+                {
+                    Street = street,
+                    Number = number,
+                    Office = office
+                }
+            };
+            //var payLink = PayLinkEntryText;
+            var payLink = "goo.gl";
             var description = DescriptionEntryText;
 
             if (name == null || address == null || payLink == null)
@@ -84,18 +115,21 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
             }
             else
             {
-                var group = await Context.GroupService.Create(name);
-                await SecureStorage.SetAsync("activeGroupToken", group.Id);
-                var configureCitchen = await Context.GroupService.ConfigureKitchen(address, group.Id);
-                var configurePaymentInfo = await Context.GroupService.ConfigurePaymentInfo(payLink, description, group.Id);
-                if (configureCitchen == System.Net.HttpStatusCode.OK && configurePaymentInfo == System.Net.HttpStatusCode.OK)
-                {
-                    _firstCreatePage.ShowNextPage(null);
-                }
-                else
-                {
-                    EntryIsInvalid = true;
-                }
+                //var group = await Context.GroupService.Create(name);
+                //await SecureStorage.SetAsync("activeGroupToken", group.Id);
+                await SecureStorage.SetAsync("activeGroupToken", "b8dd02aa-52ce-45d2-b57b-a00fb8fc6ac1"); //затычка
+                //address.GroupId = group.Id;
+                //var configureGroupLocation = await Context.GroupService.ConfigureGroupLocation(address);
+                //var configurePaymentInfo = await Context.GroupService.ConfigurePaymentInfo(payLink, description, group.Id);
+                //if (configureGroupLocation == System.Net.HttpStatusCode.OK && configurePaymentInfo == System.Net.HttpStatusCode.OK)
+                //{
+                //    _firstCreatePage.ShowNextPage(null);
+                //}
+                //else
+                //{
+                //    EntryIsInvalid = true;
+                //}
+                _firstCreatePage.ShowNextPage(null); //затычка
             }
         }
     }

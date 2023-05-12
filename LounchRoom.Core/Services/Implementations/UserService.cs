@@ -13,7 +13,7 @@ namespace LounchRoom.Core.Services.Implementations
     {
         public async Task<UserDTO> Load()
         {
-            var response = await Context.Connection.GetRequest("https://api.lunchroom66.ru/api/User/GetUser", "oauthToken");
+            var response = await Context.Connection.GetRequest("https://api.lunchroom66.ru/api/User/GetUser");
             if (response.StatusCode.Code == System.Net.HttpStatusCode.OK)
             {
                 try
@@ -34,7 +34,7 @@ namespace LounchRoom.Core.Services.Implementations
 
         public async Task<ObservableCollection<UserGroupDTO>> LoadGroupList()
         {
-            var response = await Context.Connection.GetRequest("https://api.lunchroom66.ru/api/User/GetUser", "oauthToken");
+            var response = await Context.Connection.GetRequest("https://api.lunchroom66.ru/api/User/GetUser");
             if (response.StatusCode.Code == System.Net.HttpStatusCode.OK)
             {
                 try

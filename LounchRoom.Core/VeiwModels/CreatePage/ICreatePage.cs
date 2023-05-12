@@ -8,5 +8,6 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
     {
         public void ShowNextPage(string arg);
         public void ShowPreviousPage();
+        public void ShowDisplayAlert(string time, string updateMenu);
     }
 }

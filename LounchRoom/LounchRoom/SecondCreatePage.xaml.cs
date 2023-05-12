@@ -19,16 +19,32 @@ namespace LounchRoom
 
             var pageVM = new SecondCreatePageVM(this);
             this.BindingContext = pageVM;
+
+        }
+
+        public async void ShowDisplayAlert(string time, string updateMenu)
+        {
+            await DisplayAlert("Условия заказа", $"Крайнее время заказа: {time}\nМеню обновляется: {updateMenu}", "Назад");
         }
 
         public void ShowNextPage(string arg)
         {
-            throw new NotImplementedException();
+            switch (arg)
+            {
+                case "Next":
+                    this.Navigation.PushAsync(new ThirdCreatePage());
+                    break;
+                case "Menu":
+                    this.Navigation.PushAsync(new MenuExamplePage());
+                    break;
+            }
+
+            
         }
 
         public void ShowPreviousPage()
         {
-            throw new NotImplementedException();
+            this.Navigation.PopAsync();
         }
     }
 }

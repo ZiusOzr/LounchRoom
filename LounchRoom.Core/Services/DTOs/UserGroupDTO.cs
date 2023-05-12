@@ -9,7 +9,7 @@ namespace LounchRoom.Core.Services.DTOs
     {
         public string  GroupId { get; set; }
         public string GroupName { get; set; }
-        public string TextColor { get; set; } = "Aqua";
+        public string TextColor { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged()

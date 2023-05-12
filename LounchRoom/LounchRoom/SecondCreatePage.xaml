@@ -8,7 +8,7 @@
             <Label Text="Выбор столовой"
                 HorizontalOptions="CenterAndExpand"
                    Style="{StaticResource Key=header}"/>
-            <ListView ItemsSource="{Binding KitchensList}" SelectionMode="Single" SelectedItem="{Binding SelectedKitchen}">
+            <ListView ItemsSource="{Binding KitchensItems}" SelectionMode="Single" SelectedItem="{Binding SelectedKitchen}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -18,36 +18,54 @@
                                                 BackgroundColor="#E7EECA">
                                 <behaviors:Expander.Header>
                                     <Grid>
-                                        <Label Text="{Binding KitchenNameLabel}"
-                                           Style="{StaticResource Key=caption}"
-                                               HorizontalOptions="Start"
-                                               VerticalOptions="Start"/>
-                                        <Label Text="{Binding LegalNameLabel}"
-                                               Style="{StaticResource Key=body}"
-                                               HorizontalOptions="Start"/>
-                                        <Image Style="{StaticResource imageExpandStatesStyle}"
+                                        <!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>-->
+
+                                        <Label Text="{Binding OrganizationName}"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               Style="{StaticResource Key=caption}"/>
+                                        <Image Source="expend_more-48px.xm"
                                                HorizontalOptions="End"
-                                               VerticalOptions="Start"/>
+                                               VerticalOptions="Start">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image"
+                                                             Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}"
+                                                             Value="true">
+                                                    <Setter Property="Source" Value="expend_less-48px.xml"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
                                     </Grid>
                                 </behaviors:Expander.Header>
+                                
                                 <behaviors:Expander.ContentTemplate>
                                     <DataTemplate>
                                         <Grid>
-                                            <Label Text="{Binding PhoneLabel}"
-                                               Style="{StaticResource body}"/>
-                                            <Label Text="{Binding EmailLabel}"
-                                               Style="{StaticResource body}"/>
-                                            <Button Text="Посмотреть меню"
-                                                    Style="{StaticResource buttonStatesStyle}"
+                                            <Label Text="{Binding Phone}"
+                                                   Style="{StaticResource body}"/>
+                                            <Label Text="{Binding Email}"
+                                                   Style="{StaticResource body}"/>
+                                            <Button x:Name="menuButton"
+                                                Text="Посмотреть меню"
+                                                    Style="{StaticResource lightGreenButton}"
                                                     Command="{Binding ShowKitchenMenuButton}"/>
-                                            <Button Text="Условия заказа"
-                                                    Style="{StaticResource buttonStatesStyle}"
+                                            <Button x:Name="conditionsButton"
+                                                Text="Условия заказа"
+                                                    Style="{StaticResource lightGreenButton}"
                                                     Command="{Binding ShowConditionsOrderButton}"/>
-                                            <Button Text="Выбрать"
-                                                    Style="{StaticResource buttonStatesStyle}"
-                                                    Command="{Binding ChooseKitchenButton}"/>
+                                            <Button x:Name="chooseButton"
+                                                Text="Выбрать"
+                                                    Style="{StaticResource greenButton}"
+                                                    Command="{Binding ChooseKitchenButton}"
+                                                    HorizontalOptions="Center"/>
                                         </Grid>
-                                       
                                     </DataTemplate>
                                 </behaviors:Expander.ContentTemplate>
                             </behaviors:Expander>
@@ -55,19 +73,26 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
+
+            <Grid VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
                 <Button x:Name="previousePage"
-                        Style="{StaticResource buttonStatesStyle}"
+                        Grid.Column="0"
+                        Style="{StaticResource lightGreenButton}"
                         Text="Назад"
                         BorderWidth="200"
                         Command="{Binding PreviousePageButton}"/>
                 <Button x:Name="nextPage"
-                        Style="{StaticResource buttonStatesStyle}"
+                        Grid.Column="1"
+                        Style="{StaticResource greenButton}"
                         Text="Далее"
                         BorderWidth="200"
                         Command="{Binding NextPageButton}"/>
-            </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

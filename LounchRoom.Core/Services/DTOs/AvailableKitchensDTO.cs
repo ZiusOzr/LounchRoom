@@ -6,6 +6,7 @@ namespace LounchRoom.Core.Services.DTOs
 {
     public class AvailableKitchensDTO
     {
+        public string KitchenId { get; set; }
         public string OrganizationName { get; set; }
         public string Address { get; set; }
         public Contacts Contacts { get; set; }

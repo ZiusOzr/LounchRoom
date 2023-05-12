@@ -13,17 +13,20 @@ namespace LounchRoom.Core.Services.Implementations
     public class ConnectionService : IConnectionService
     {
         //public HttpClient Сlient = new HttpClient();
-        public async Task<Result> GetRequest(string url, string tokenName)
+        public async Task<Result> GetRequest(string url)
         {
             try
             {
                 using var client = new HttpClient();
-                var token = await SecureStorage.GetAsync(tokenName);
                 var request = new HttpRequestMessage();
                 request.RequestUri = new Uri(url);
                 request.Method = HttpMethod.Get;
                 //request.Headers.Add("accept", "application/json");
-                request.Headers.Add("Authorization", $"Bearer {token}");
+                var token = await SecureStorage.GetAsync("oauthToken");
+                if (token != null)
+                {
+                    request.Headers.Add("Authorization", $"Bearer {token}");
+                }
                 var response = await client.SendAsync(request);
                 var newJson = await response.Content.ReadAsStringAsync();
                 var code = response.StatusCode;

@@ -31,74 +31,6 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
             }
         }
 
-        private string kitchenNameLabel;
-        public string KitchenNameLabel
-        {
-            get
-            {
-                return kitchenNameLabel;
-            }
-            set
-            {
-                if (kitchenNameLabel != value)
-                {
-                    kitchenNameLabel = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(KitchenNameLabel)));
-                }
-            }
-        }
-
-        private string legalNameLabel;
-        public string LegalNameLabel
-        {
-            get
-            {
-                return legalNameLabel;
-            }
-            set
-            {
-                if (legalNameLabel != value)
-                {
-                    legalNameLabel = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LegalNameLabel)));
-                }
-            }
-        }
-
-        private string phoneLabel;
-        public string PhoneLabel
-        {
-            get
-            {
-                return phoneLabel;
-            }
-            set
-            {
-                if (phoneLabel != value)
-                {
-                    phoneLabel = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PhoneLabel)));
-                }
-            }
-        }
-
-        private string emailLabel;
-        public string EmailLabel
-        {
-            get
-            {
-                return emailLabel;
-            }
-            set
-            {
-                if (emailLabel != value)
-                {
-                    phoneLabel = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EmailLabel)));
-                }
-            }
-        }
-
         private AvailableKitchensDTO selectedKitchen;
         public AvailableKitchensDTO SelectedKitchen
         {
@@ -138,14 +70,22 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
         private async void ChooseKitchenButtonExecute()
         {
             var groupToken = await SecureStorage.GetAsync("activeGroupToken");
-            var kitchenToken = SelectedKitchen.Settings.KitchenId;
-            await SecureStorage.SetAsync("kitchenToken", kitchenToken);
-           // var responce = await Context.GroupService.SetActiveKitchen(groupToken, kitchenToken);
+            var kitchenToken = SelectedKitchen.KitchenId;
+            var responce = await Context.GroupService.SetActiveKitchen(groupToken, kitchenToken);
+            if (responce == System.Net.HttpStatusCode.OK)
+            {
+                await SecureStorage.SetAsync("kitchenToken", kitchenToken);
+            }
+            else
+            {
+                throw new Exception("Unknow error"); //Нельзя выбрасывать
+            }
         }
 
         private void ShowConditionsOrderButtonExecute()
         {
-            _secondCreatePage.ShowNextPage("Conditions");
+            var menuUpdate = SelectedKitchen.Settings.MenuUpdatePeriod == 0 ? "Раз в день" : "Раз в неделю";
+            _secondCreatePage.ShowDisplayAlert(SelectedKitchen.Settings.LimitingTimeForOrder, menuUpdate); //Добавить минимальную сумму
         }
 
         private void ShowKitchenMenuButtonExecute()
@@ -155,7 +95,8 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
 
         private async void LoadKitchens()
         {
-            var kitchenList = await Context.GroupService.GetAllowedKitchens();
+            var groupToken = await SecureStorage.GetAsync("activeGroupToken");
+            var kitchenList = await Context.GroupService.GetAllowedKitchens(groupToken);
             KitchensItems = kitchenList;
         }
 

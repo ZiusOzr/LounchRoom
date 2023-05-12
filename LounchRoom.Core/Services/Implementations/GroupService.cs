@@ -38,25 +38,6 @@ namespace LounchRoom.Core.Services.Implementations
 
         }
 
-        public async Task<HttpStatusCode> ConfigureKitchen(string address, string Id)
-        {
-            //to do: получить координаты
-            var groupConfigDTO = new GroupConfigDTO
-            {
-                Address = address,
-                GroupId = Id,
-                Location = new Point
-                {
-                    Type = "Point",
-                    //Coordinates =
-                }
-            };
-            var json = JsonConvert.SerializeObject(groupConfigDTO);
-            var response = await Context.Connection.PostRequest("", json);
-            return response.StatusCode.Code;
-
-        }
-
         public async Task<HttpStatusCode> ConfigurePaymentInfo(string link, string description, string Id)
         {
             var qr = Convert.ToBase64String(Encoding.UTF8.GetBytes(link));
@@ -68,13 +49,14 @@ namespace LounchRoom.Core.Services.Implementations
                 Qr = qr
             };
             var json = JsonConvert.SerializeObject(paymentInfoDTO);
-            var response = await Context.Connection.PostRequest("https://api.lunchroom66.ru/api/Group/ConfigurePaymentInfo", json);
+            var response = await Context.Connection.PostRequest("https://api.lunchroom66.ru/api/Group/ConfigurePaymentInfo?groupId=" + Id, json);
             return response.StatusCode.Code;
         }
 
-        public async Task<ObservableCollection<AvailableKitchensDTO>> GetAllowedKitchens()
+        public async Task<ObservableCollection<AvailableKitchensDTO>> GetAllowedKitchens(string groupToken)
         {
-            var response = await Context.Connection.GetRequest("https://api.lunchroom66.ru/api/Group/GetAllowedKitchens", "activeGroupToken");
+            
+            var response = await Context.Connection.GetRequest($"https://api.lunchroom66.ru/api/Group/GetAllowedKitchens?groupId={groupToken}");
             if (response.StatusCode.Code == HttpStatusCode.OK)
             {
                 try
@@ -93,9 +75,17 @@ namespace LounchRoom.Core.Services.Implementations
             }
         }
 
+        public async Task<HttpStatusCode> ConfigureGroupLocation(GroupConfigByAddressDTO address)
+        {
+            var json = JsonConvert.SerializeObject(address);
+            var response = await Context.Connection.PostRequest("https://api.lunchroom66.ru/api/Group/ConfigureGroupLocation", json);
+            return response.StatusCode.Code;
+        }
+
         public async Task<HttpStatusCode> SetActiveKitchen(string groupToken, string kitchenToken)
         {
-            throw new Exception();
+            var response = await Context.Connection.PostRequest($"https://api.lunchroom66.ru/api/Group/SetActiveKitchen?groupId={groupToken}&kitchenId={kitchenToken}", null);
+            return response.StatusCode.Code;
         }
     }
 }

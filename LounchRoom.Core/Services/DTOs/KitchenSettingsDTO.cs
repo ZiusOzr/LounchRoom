@@ -4,7 +4,6 @@ namespace LounchRoom.Core.Services.DTOs
 {
     public class KitchenSettingsDTO
     {
-        public string KitchenId { get; set; }
         public string LimitingTimeForOrder { get; set; }
         public MenuUpdatePeriod MenuUpdatePeriod { get; set; }
         public MenuFormat MenuFormat { get; set; }
