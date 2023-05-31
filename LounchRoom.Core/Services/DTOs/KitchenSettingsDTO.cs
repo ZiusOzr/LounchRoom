@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Xamarin.Forms.Shapes;
 
 namespace LounchRoom.Core.Services.DTOs
 {
@@ -7,18 +8,13 @@ namespace LounchRoom.Core.Services.DTOs
         public string LimitingTimeForOrder { get; set; }
         public MenuUpdatePeriod MenuUpdatePeriod { get; set; }
         public MenuFormat MenuFormat { get; set; }
+        public decimal? MinAmountForSharedOrder { get; set; }
         public List<ShippingArea> ShippingAreas { get; set; }
     }
 
     public class ShippingArea
     {
         public Polygon Polygon { get; set; }
-    }
-
-    public class Polygon
-    {
-        public string Type { get; set; }
-        public List<List<List<int>>> Coordinates { get; set; }
     }
 
     public enum MenuFormat

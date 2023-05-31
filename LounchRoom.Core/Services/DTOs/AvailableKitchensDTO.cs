@@ -1,6 +1,9 @@
-﻿using System;
+﻿using LounchRoom.Core.VeiwModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace LounchRoom.Core.Services.DTOs
 {
@@ -15,7 +18,8 @@ namespace LounchRoom.Core.Services.DTOs
 
     public class Contacts
     {
-        public string Email { get; set; }
         public string Phone { get; set; }
+        public string Email { get; set; }
+        
     }
 }

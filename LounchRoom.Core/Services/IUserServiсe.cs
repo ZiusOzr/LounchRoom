@@ -9,7 +9,7 @@ namespace LounchRoom.Core.Services
 {
     public interface IUserServiсe
     {
-        public Task<UserDTO> Load();
+        public Task<UserDTO> Load(string UserId);
         public Task<ObservableCollection<UserGroupDTO>> LoadGroupList();
         //public Task LoadGroupList();
     }

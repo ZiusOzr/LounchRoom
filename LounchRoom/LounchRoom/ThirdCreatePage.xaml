@@ -4,9 +4,54 @@
              x:Class="LounchRoom.ThirdCreatePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding GroupName}"/>
+            <Label Text="Столовая:"/>
+            <Label Text="{Binding KitchenName}"/>
+            <Button Text="Выбрать столовую" Command="{Binding ChooseKitchen}"/>
+            <Label Text="Ссылка на приглашение:"/>
+            <Entry x:Name="referalLink"
+                Text="{Binding ReferalLink}" IsReadOnly="True"/>
+            <Button Text="Копировать ссылку" Command="{Binding CopyLinkButton}"/>
+            <Label Text="Список участников"/>
+            <CollectionView >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="Start">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding Surname}" Grid.Column="0"/>
+                                <Label Text="{Binding Name}" Grid.Column="1"/>
+                                <Label Text="{Binding Patronymic}" Grid.Column="2"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="editPage"
+                        Grid.Column="0"
+                        Style="{StaticResource lightGreenButton}"
+                        Text="Редактировать"
+                        BorderWidth="200"
+                        Command="{Binding EditPageButton}"/>
+                <Button x:Name="nextPage"
+                        Grid.Column="1"
+                        Style="{StaticResource greenButton}"
+                        Text="Контроль заказов"
+                        BorderWidth="200"
+                        Command="{Binding OrderControlPageButton}"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

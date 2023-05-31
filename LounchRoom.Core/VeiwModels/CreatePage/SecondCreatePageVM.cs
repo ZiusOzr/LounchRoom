@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -14,8 +15,8 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ObservableCollection<AvailableKitchensDTO> kitchensItems;
-        public ObservableCollection<AvailableKitchensDTO> KitchensItems
+        private ObservableCollection<KitchenItemVM> kitchensItems;
+        public ObservableCollection<KitchenItemVM> KitchensItems
         {
             get
             {
@@ -31,28 +32,12 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
             }
         }
 
-        private AvailableKitchensDTO selectedKitchen;
-        public AvailableKitchensDTO SelectedKitchen
-        {
-            get
-            {
-                return selectedKitchen;
-            }
-            set
-            {
-                if (selectedKitchen != value)
-                {
-                    selectedKitchen = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedKitchen)));
-                }
-            }
-        }
-
-        public ICommand NextPageButton { get; set; }
-        public ICommand PreviousePageButton { get; set; }
         public ICommand ShowKitchenMenuButton { get; set; }
         public ICommand ShowConditionsOrderButton { get; set; }
         public ICommand ChooseKitchenButton { get; set; }
+
+        public ICommand NextPageButton { get; set; }
+        public ICommand PreviousePageButton { get; set; }
 
         private ICreatePage _secondCreatePage;
         public SecondCreatePageVM(ICreatePage secondCreatePage)
@@ -61,16 +46,18 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
 
             NextPageButton = new Command(NextPageButtonExecute);
             PreviousePageButton = new Command(PreviousePageButtonExecute);
+
             LoadKitchens();
-            ShowKitchenMenuButton = new Command(ShowKitchenMenuButtonExecute);
-            ShowConditionsOrderButton = new Command(ShowConditionsOrderButtonExecute);
-            ChooseKitchenButton = new Command(ChooseKitchenButtonExecute);
+
+
         }
 
-        private async void ChooseKitchenButtonExecute()
+        
+
+        private async void ChooseKitchenButtonExecute(KitchenItemVM kitchenItem)
         {
             var groupToken = await SecureStorage.GetAsync("activeGroupToken");
-            var kitchenToken = SelectedKitchen.KitchenId;
+            var kitchenToken = kitchenItem.KitchenId;
             var responce = await Context.GroupService.SetActiveKitchen(groupToken, kitchenToken);
             if (responce == System.Net.HttpStatusCode.OK)
             {
@@ -82,14 +69,15 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
             }
         }
 
-        private void ShowConditionsOrderButtonExecute()
+        private void ShowConditionsOrderButtonExecute(KitchenItemVM kitchenItem)
         {
-            var menuUpdate = SelectedKitchen.Settings.MenuUpdatePeriod == 0 ? "Раз в день" : "Раз в неделю";
-            _secondCreatePage.ShowDisplayAlert(SelectedKitchen.Settings.LimitingTimeForOrder, menuUpdate); //Добавить минимальную сумму
+            var menuUpdate = kitchenItem.Settings.MenuUpdatePeriod == 0 ? "Раз в день" : "Раз в неделю";
+            _secondCreatePage.ShowDisplayAlert(kitchenItem.Settings.LimitingTimeForOrder, menuUpdate, kitchenItem.Settings.MinAmountForSharedOrder);
         }
 
-        private void ShowKitchenMenuButtonExecute()
+        private async void ShowKitchenMenuButtonExecute(KitchenItemVM kitchenItem)
         {
+            await SecureStorage.SetAsync("activeKitchenToken", kitchenItem.KitchenId);
             _secondCreatePage.ShowNextPage("Menu");
         }
 
@@ -97,7 +85,7 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
         {
             var groupToken = await SecureStorage.GetAsync("activeGroupToken");
             var kitchenList = await Context.GroupService.GetAllowedKitchens(groupToken);
-            KitchensItems = kitchenList;
+            KitchensItems = new ObservableCollection<KitchenItemVM>(kitchenList.Select(x => new KitchenItemVM(x, ChooseKitchenButtonExecute, ShowConditionsOrderButtonExecute, ShowKitchenMenuButtonExecute)));
         }
 
         private void PreviousePageButtonExecute()
@@ -109,5 +97,22 @@ namespace LounchRoom.Core.VeiwModels.CreatePage
         {
             _secondCreatePage.ShowNextPage("Next");
         }
+
+        //class SomeItemVM
+        //{
+        //    private readonly Action<SomeItemVM> previousePageButtonExecute;
+        //    ICommand c;
+        //    public SomeItemVM(AvailableKitchensDTO dto, Action<SomeItemVM> previousePageButtonExecute)
+        //    {
+        //        this.previousePageButtonExecute = previousePageButtonExecute;
+
+        //        c = new Command(ExecuteCommand);
+        //    }
+
+        //    void ExecuteCommand()
+        //    {
+        //        previousePageButtonExecute?.Invoke(this);
+        //    }
+        //}
     }
 }

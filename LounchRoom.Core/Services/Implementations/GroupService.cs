@@ -56,17 +56,17 @@ namespace LounchRoom.Core.Services.Implementations
         public async Task<ObservableCollection<AvailableKitchensDTO>> GetAllowedKitchens(string groupToken)
         {
             
-            var response = await Context.Connection.GetRequest($"https://api.lunchroom66.ru/api/Group/GetAllowedKitchens?groupId={groupToken}");
+            var response = await Context.Connection.GetRequest($"https://api.lunchroom66.ru/api/Group/GetAvailableKitchens?groupId={groupToken}");
             if (response.StatusCode.Code == HttpStatusCode.OK)
             {
                 try
                 {
-                    var allowedGroups = JsonConvert.DeserializeObject<ObservableCollection<AvailableKitchensDTO>>(response.Json);
-                    return allowedGroups;
+                    var allowedKitchens = JsonConvert.DeserializeObject<ObservableCollection<AvailableKitchensDTO>>(response.Json);
+                    return allowedKitchens;
                 }
-                catch
+                catch (Exception ex)
                 {
-                    throw new Exception("Unknow error"); //Нельзя выбрасывать
+                    throw ex; //Нельзя выбрасывать
                 }
             }
             else
@@ -86,6 +86,20 @@ namespace LounchRoom.Core.Services.Implementations
         {
             var response = await Context.Connection.PostRequest($"https://api.lunchroom66.ru/api/Group/SetActiveKitchen?groupId={groupToken}&kitchenId={kitchenToken}", null);
             return response.StatusCode.Code;
+        }
+
+        public async Task<GroupDTO> GetGroupInfo(string token)
+        {
+            var response = await Context.Connection.GetRequest($"https://api.lunchroom66.ru/api/Group/GetGroup?groupId={token}");
+            if (response.StatusCode.Code == HttpStatusCode.OK)
+            {
+                var DTO = JsonConvert.DeserializeObject<GroupDTO>(response.Json);
+                return DTO;
+            }
+            else
+            {
+                throw new Exception("Unknow");
+            }
         }
     }
 }

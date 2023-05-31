@@ -8,24 +8,71 @@
             <Label Text="Выбор столовой"
                 HorizontalOptions="CenterAndExpand"
                    Style="{StaticResource Key=header}"/>
-            <ListView ItemsSource="{Binding KitchensItems}" SelectionMode="Single" SelectedItem="{Binding SelectedKitchen}">
+            <ListView x:Name="kitchenList" 
+                ItemsSource="{Binding KitchensItems}" SelectionMode="None" SelectedItem="{Binding SelectedKitchen}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <behaviors:Expander Padding="20" 
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="80"/>
+                                </Grid.RowDefinitions>
+
+                            <Label Text="{Binding OrganizationName}"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               Style="{StaticResource Key=caption}"/>
+                            
+                            <Label Text="{Binding Phone}"
+                                   Style="{StaticResource body}"
+                                   Grid.Row="1"
+                                   Grid.Column="0"/>
+                                <Label Text="{Binding Email}"
+                                       Style="{StaticResource body}"
+                                       Grid.Row="2"
+                                       Grid.Column="0"/>
+                                <Button x:Name="menuButton"
+                                        Text="Посмотреть меню"
+                                        Style="{StaticResource lightGreenButton}"
+                                        Command="{Binding ShowKitchenMenuButton}"
+                                        Grid.Row="3"
+                                        Grid.Column="0"/>
+                                <Button x:Name="conditionsButton"
+                                                Text="Условия заказа"
+                                                    Style="{StaticResource lightGreenButton}"
+                                        Command="{Binding ShowConditionsOrderButton}"
+                                        Grid.Row="3"
+                                        Grid.Column="1"/>
+                                <Button x:Name="chooseButton"
+                                                Text="Выбрать"
+                                                    Style="{StaticResource greenButton}"
+                                        Command="{Binding ChooseKitchenButton}"
+                                                    HorizontalOptions="Center"
+                                        Grid.Row="3"
+                                        Grid.Column="2"/>
+                            </Grid>
+                            <!--<behaviors:Expander Padding="20" 
                                                 Margin="15" 
                                                 behaviors:CornerRadiusEffect.CornerRadius="10"
                                                 BackgroundColor="#E7EECA">
                                 <behaviors:Expander.Header>
                                     <Grid>
-                                        <!--<Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>-->
+                                        </Grid.RowDefinitions>
 
                                         <Label Text="{Binding OrganizationName}"
                                                Grid.Column="0"
@@ -68,7 +115,7 @@
                                         </Grid>
                                     </DataTemplate>
                                 </behaviors:Expander.ContentTemplate>
-                            </behaviors:Expander>
+                            </behaviors:Expander>-->
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

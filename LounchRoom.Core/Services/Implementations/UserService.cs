@@ -11,7 +11,7 @@ namespace LounchRoom.Core.Services.Implementations
 {
     public class UserService : IUserServiсe
     {
-        public async Task<UserDTO> Load()
+        public async Task<UserDTO> Load(string UserId)
         {
             var response = await Context.Connection.GetRequest("https://api.lunchroom66.ru/api/User/GetUser");
             if (response.StatusCode.Code == System.Net.HttpStatusCode.OK)

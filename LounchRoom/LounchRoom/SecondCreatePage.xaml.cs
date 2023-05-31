@@ -22,9 +22,9 @@ namespace LounchRoom
 
         }
 
-        public async void ShowDisplayAlert(string time, string updateMenu)
+        public async void ShowDisplayAlert(string time, string updateMenu, decimal? price)
         {
-            await DisplayAlert("Условия заказа", $"Крайнее время заказа: {time}\nМеню обновляется: {updateMenu}", "Назад");
+            await DisplayAlert("Условия заказа", $"Крайнее время заказа: {time}\nМеню обновляется: {updateMenu}\nМинимальная сумма заказа: {price}", "Назад");
         }
 
         public void ShowNextPage(string arg)

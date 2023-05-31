@@ -139,7 +139,7 @@ namespace LounchRoom.Core.VeiwModels.ProfilePage
             if (e.PropertyName == nameof(SelectedGroupItem))
             {
                 await SecureStorage.SetAsync("activeGroupToken", SelectedGroupItem?.GroupId ?? "");
-                SelectedGroupItem.TextColor = "#A1C30D";
+                
                 SelectedGroupItem.OnPropertyChanged();
             }
         }
@@ -148,7 +148,7 @@ namespace LounchRoom.Core.VeiwModels.ProfilePage
         {
             try
             {
-                var userDTO = await Context.UserService.Load();
+                var userDTO = await Context.UserService.Load(null);
                 NameEntryText = userDTO.Name;
                 SurnameEntryText = userDTO.Surname;
                 PatronymicEntryText = userDTO.Patronymic;

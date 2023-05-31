@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LounchRoom.OrderControlPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding GroupName}"/>
+            <Label Text="Столовая:"/>
+            <Label Text="{Binding KitchenName}"/>
+            <Button Text="Редактировать группу" Command="{Binding EditGroup}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Сводка заказов"
+                   Grid.Column="0"/>
+                <DatePicker x:Name="datePicker"
+                            Grid.Column="1"
+                            MinimumDate="01/01/2023"
+                    Format="D"
+                    Margin="30, 0, 0, 30"
+                    />
+            </Grid>
+            
+            <CollectionView x:Name="orderReportList"
+                 SelectedItem="null">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="StartAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding UserName}" Grid.Column="0"/>
+                                <Label Text="{Binding LunchSetPrice}" Grid.Column="1"/>
+                                <Label Text="{Binding OptionsPrice}" Grid.Column="2"/>
+                                <Label Text="{Binding Summary}" Grid.Column="3"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,6 +26,19 @@ namespace LounchRoom
 
             pageVM.PropertyChanged += PageVM_PropertyChanged;
             pageVM.PropertyChanged += PageVM_PropertyChanged_EntryText;
+            PropertyChanged += SelectedGroupItem_PropertyChanged;
+        }
+
+        private async void SelectedGroupItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var pageVM = BindingContext as ProfilePageVM;
+
+            if (e.PropertyName == nameof(pageVM.SelectedGroupItem))
+            {
+                await SecureStorage.SetAsync("activeGroupToken", pageVM.SelectedGroupItem?.GroupId ?? "");
+                pageVM.SelectedGroupItem.TextColor = "#A1C30D";
+                pageVM.SelectedGroupItem.OnPropertyChanged();
+            }
         }
 
 

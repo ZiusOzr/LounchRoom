@@ -71,7 +71,7 @@ namespace LounchRoom
             VisualStateManager.GoToState(previousePage, "LightGreenButton");
         }
 
-        public void ShowDisplayAlert(string time, string updateMenu)
+        public void ShowDisplayAlert(string time, string updateMenu, decimal? prise)
         {
             throw new NotImplementedException();
         }

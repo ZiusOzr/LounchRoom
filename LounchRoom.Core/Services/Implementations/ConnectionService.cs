@@ -21,7 +21,6 @@ namespace LounchRoom.Core.Services.Implementations
                 var request = new HttpRequestMessage();
                 request.RequestUri = new Uri(url);
                 request.Method = HttpMethod.Get;
-                //request.Headers.Add("accept", "application/json");
                 var token = await SecureStorage.GetAsync("oauthToken");
                 if (token != null)
                 {
@@ -43,17 +42,9 @@ namespace LounchRoom.Core.Services.Implementations
                 };
                 return result;
             }
-            catch
+            catch (Exception ex)
             {
-                return new Result
-                {
-                    Json = null,
-                    StatusCode =
-                    {
-                        Code = System.Net.HttpStatusCode.Conflict,
-                        Reason = "Unckown error"
-                    }
-                };
+                throw ex;
             }
         }
 
@@ -62,10 +53,15 @@ namespace LounchRoom.Core.Services.Implementations
             try
             {
                 using var client = new HttpClient();
-
-                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 var request = new HttpRequestMessage();
+                if (json != null)
+                {
+                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    request.Content = content;
+                }
+                
+
+                
                 request.RequestUri = new Uri(url);
                 request.Method = HttpMethod.Post;
                 request.Headers.Add("accept", "application/json");
@@ -75,7 +71,7 @@ namespace LounchRoom.Core.Services.Implementations
                     request.Headers.Add("Authorization", $"Bearer {token}");
                 }
                 
-                request.Content = content;
+                
                 var response = await client.SendAsync(request);
                 var newJson = await response.Content.ReadAsStringAsync();
                 var code = response.StatusCode;

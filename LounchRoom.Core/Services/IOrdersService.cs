@@ -9,6 +9,6 @@ namespace LounchRoom.Core.Services
 {
     public interface IOrdersService
     {
-        Task<List<OrdersDTO>> LoadOrders();
+        Task<ObservableCollection<OrderReportDTO>> GetOrdersReportByDay(DateTime date, string groupToken);
     }
 }
